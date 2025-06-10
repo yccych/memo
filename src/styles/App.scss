@@ -4,6 +4,8 @@
   padding: 20px;
   background-image: url('../images/bg-1.jpg');
   background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 
 .header {
@@ -26,6 +28,8 @@
       background: white;
       border-radius: 8px;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 300px;
       
       .MuiOutlinedInput-root {
         border-radius: 8px;
@@ -85,5 +89,36 @@
     border-top-color: transparent;
     border-radius: 50%;
     animation: loading 1s linear infinite;
+  }
+}
+
+// 移动端适配
+@media screen and (max-width: 768px) {
+  .app-container {
+    padding: 10px;
+  }
+
+  .header {
+    margin-bottom: 20px;
+    
+    .title {
+      font-size: 1.8rem;
+      margin-bottom: 15px;
+    }
+  }
+
+  .date-picker-container {
+    .MuiTextField-root {
+      max-width: 100%;
+    }
+  }
+}
+
+// 小屏幕手机适配
+@media screen and (max-width: 480px) {
+  .header {
+    .title {
+      font-size: 1.5rem;
+    }
   }
 } 

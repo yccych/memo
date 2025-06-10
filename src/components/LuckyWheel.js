@@ -1,10 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { LuckyWheel } from '@lucky-canvas/react';
 import '../styles/LuckyWheel.scss';
 
 const LuckyWheelComponent = ({ items }) => {
   const [result, setResult] = useState(null);
   const [canSpin, setCanSpin] = useState(true);
+  const [wheelSize, setWheelSize] = useState('400px');
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth <= 480) {
+        setWheelSize('250px');
+      } else if (window.innerWidth <= 768) {
+        setWheelSize('300px');
+      } else {
+        setWheelSize('400px');
+      }
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const getRandomColor = () => {
     const colors = [
@@ -20,8 +37,8 @@ const LuckyWheelComponent = ({ items }) => {
   };
 
   const defaultConfig = {
-    width: '400px',
-    height: '400px',
+    width: wheelSize,
+    height: wheelSize,
     blocks: [
       { padding: '10px', background: '#fff' }
     ],
@@ -34,11 +51,15 @@ const LuckyWheelComponent = ({ items }) => {
       {
         radius: '40%',
         background: '#ff69b4',
-        fonts: [{ text: '开始\n抽奖', fontSize: '20px', fontColor: '#fff' }]
+        fonts: [{ 
+          text: '开始\n抽奖', 
+          fontSize: window.innerWidth <= 480 ? '16px' : '20px', 
+          fontColor: '#fff' 
+        }]
       }
     ],
     defaultStyle: {
-      fontSize: '16px',
+      fontSize: window.innerWidth <= 480 ? '14px' : '16px',
       fontColor: '#333',
       fontWeight: 'bold',
       fontFamily: '"Ma Shan Zheng", cursive'

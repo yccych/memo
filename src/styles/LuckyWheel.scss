@@ -197,4 +197,116 @@
     transform: scale(1);
     opacity: 1;
   }
+}
+
+// 移动端适配
+@media screen and (max-width: 768px) {
+  .lucky-wheel-section {
+    padding: 15px;
+    margin-top: 20px;
+  }
+
+  .wheel-title {
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+  }
+
+  .wheel-container {
+    width: 300px;
+    height: 300px;
+  }
+
+  .pointer-container {
+    top: -15px;
+    width: 30px;
+    height: 30px;
+  }
+
+  .pointer {
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-top: 25px solid #ff69b4;
+
+    &::after {
+      top: -20px;
+      left: -8px;
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  .result-content {
+    padding: 20px;
+    width: 300px;
+
+    h3 {
+      font-size: 1.5rem;
+    }
+
+    .result-text {
+      font-size: 1.3rem;
+      margin: 15px 0;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 1rem;
+    }
+  }
+}
+
+// 小屏幕手机适配
+@media screen and (max-width: 480px) {
+  .lucky-wheel-section {
+    padding: 10px;
+    margin-top: 15px;
+  }
+
+  .wheel-title {
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+  }
+
+  .wheel-container {
+    width: 250px;
+    height: 250px;
+  }
+
+  .pointer-container {
+    top: -12px;
+    width: 25px;
+    height: 25px;
+  }
+
+  .pointer {
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    border-top: 20px solid #ff69b4;
+
+    &::after {
+      top: -16px;
+      left: -6px;
+      width: 12px;
+      height: 12px;
+    }
+  }
+
+  .result-content {
+    padding: 15px;
+    width: 250px;
+
+    h3 {
+      font-size: 1.3rem;
+    }
+
+    .result-text {
+      font-size: 1.1rem;
+      margin: 12px 0;
+    }
+
+    button {
+      padding: 8px 16px;
+      font-size: 0.9rem;
+    }
+  }
 } 

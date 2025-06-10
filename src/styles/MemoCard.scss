@@ -1,13 +1,11 @@
 .memo-page {
   position: relative;
-  width: 100%;
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
 }
 
 .card-container {
-  width: 100%;
   max-width: 400px;
   min-height: 300px;
   margin: 20px auto;
@@ -131,6 +129,78 @@
     &:disabled {
       opacity: 0.5;
       cursor: not-allowed;
+    }
+  }
+}
+
+// 移动端适配
+@media screen and (max-width: 768px) {
+  .memo-page {
+    padding: 10px;
+  }
+
+  .card-container {
+    padding: 20px;
+    min-height: 250px;
+  }
+
+  .memo-content {
+    font-size: 1.2rem;
+    padding: 15px;
+  }
+
+  .typewriter-text {
+    font-size: 1.2rem;
+    min-height: 180px;
+  }
+
+  .open-button {
+    padding: 10px 20px;
+    font-size: 1rem;
+  }
+
+  .navigation-arrows {
+    bottom: 20px;
+    padding: 0 20px;
+
+    .nav-arrow {
+      width: 40px;
+      height: 40px;
+      font-size: 1.2rem;
+    }
+  }
+}
+
+// 小屏幕手机适配
+@media screen and (max-width: 480px) {
+  .card-container {
+    padding: 15px;
+    min-height: 200px;
+  }
+
+  .memo-content {
+    font-size: 1.1rem;
+    padding: 10px;
+  }
+
+  .typewriter-text {
+    font-size: 1.1rem;
+    min-height: 150px;
+  }
+
+  .open-button {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+  }
+
+  .navigation-arrows {
+    bottom: 15px;
+    padding: 0 15px;
+
+    .nav-arrow {
+      width: 35px;
+      height: 35px;
+      font-size: 1.1rem;
     }
   }
 } 

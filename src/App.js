@@ -18,7 +18,7 @@ import { memos, wheelItems } from "./data/memos";
 import "./styles/App.scss";
 
 const App = () => {
-  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [selectedDate, setSelectedDate] = useState(new Date("2025-06-10"));
   const [currentMemo, setCurrentMemo] = useState(null);
   const [isMemoOpen, setIsMemoOpen] = useState(false);
 
@@ -29,7 +29,9 @@ const App = () => {
     return startOfDay(chinaTime);
   };
 
-  console.log(getCurrentChinaDate());
+  // 设置起始日期和结束日期
+  const startDate = new Date("2025-06-10");
+  const endDate = getCurrentChinaDate();
 
   useEffect(() => {
     const formattedDate = format(selectedDate, "MM-dd-yyyy");
@@ -50,23 +52,27 @@ const App = () => {
 
   const handlePrevDay = () => {
     const prevDate = subDays(selectedDate, 1);
-    if (!isBefore(prevDate, new Date("2025-06-05"))) {
+    const formattedPrevDate = format(prevDate, "MM-dd-yyyy");
+    const prevMemo = memos.find((m) => m.date === formattedPrevDate);
+    
+    if (prevMemo) {
       handleDateChange(prevDate);
     }
   };
 
   const handleNextDay = () => {
     const nextDate = addDays(selectedDate, 1);
-    if (!isAfter(nextDate, getCurrentChinaDate())) {
+    const formattedNextDate = format(nextDate, "MM-dd-yyyy");
+    const nextMemo = memos.find((m) => m.date === formattedNextDate);
+    
+    if (nextMemo) {
       handleDateChange(nextDate);
     }
   };
 
-  const isFutureDate = isAfter(startOfDay(selectedDate), getCurrentChinaDate());
-  const isFirstDay = format(selectedDate, "MM-dd-yyyy") === "06-05-2025";
-  const isLastDay =
-    format(selectedDate, "MM-dd-yyyy") ===
-    format(getCurrentChinaDate(), "MM-dd-yyyy");
+  const isFutureDate = isAfter(startOfDay(selectedDate), endDate);
+  const isFirstDay = format(selectedDate, "MM-dd-yyyy") === format(startDate, "MM-dd-yyyy");
+  const isLastDay = format(selectedDate, "MM-dd-yyyy") === format(endDate, "MM-dd-yyyy");
 
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={zhCN}>
@@ -77,8 +83,8 @@ const App = () => {
             <DatePicker
               value={selectedDate}
               onChange={handleDateChange}
-              maxDate={getCurrentChinaDate()}
-              minDate={new Date("06-10-2025")}
+              maxDate={endDate}
+              minDate={startDate}
               format="yyyy年MM月dd日"
             />
           </div>
